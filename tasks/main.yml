@@ -1,0 +1,23 @@
+---
+
+- name: Check for supported operating system on target
+  fail: msg="The operating system of the target machine ({{ inventory_hostname }}) is not supported."
+  when: ansible_distribution != 'RedHat'
+
+- name: Check if it's already registered
+  shell: subscription-manager list | grep Subscribed
+  ignore_errors: true
+  register: is_registered
+
+- name: Register to RHN
+  command: /usr/sbin/subscription-manager register --username={{ rhn_user }} --password={{ rhn_password }} --auto-attach --force
+  when: is_registered|failed
+
+- name: Enable extra RHEL repos
+  command: yum-config-manager --enable {{ item }}
+  with_items:
+    - rhel-{{ ansible_distribution_version.split(".")[0] }}-server-optional-rpms
+    - rhel-{{ ansible_distribution_version.split(".")[0] }}-server-extras-rpms
+
+- name: Enable RHOS repos
+  command: yum-config-manager --enable rhel-{{ ansible_distribution_version.split(".")[0] }}-server-openstack-{{ rhosp_version }}-rpms

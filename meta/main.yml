@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Abel Boldú
+  description: Registers to Red Hat Network and enables repositories of RHOSP 
+  company: Midokura
+  license: Apache
+  min_ansible_version: 1.6
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  categories:
+  - packaging
+dependencies: []
