@@ -1,4 +1,4 @@
-Role Name
+rhn-rhosp
 =========
 
 Register to Red Hat Network and enables repositories of RHOSP.
