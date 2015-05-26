@@ -35,4 +35,4 @@ Apache 2.0
 Author Information
 ------------------
 
-Abel Boldú <abel.boldu (-) gmx.com>
+Abel Boldú - abel.boldu (-) gmx.com
